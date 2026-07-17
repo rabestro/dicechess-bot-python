@@ -1,0 +1,18 @@
+[project]
+name = "dicechess-bot"
+version = "1.0.0"
+description = "A dependency-free Python starter for Dice Chess bots."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Jegors Čemisovs" }]
+keywords = ["dicechess", "chess", "bot", "game"]
+dependencies = []
+
+[project.urls]
+Documentation = "https://rabestro.github.io/dicechess-play-api/"
+Source = "https://github.com/rabestro/dicechess-bot-python"
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"

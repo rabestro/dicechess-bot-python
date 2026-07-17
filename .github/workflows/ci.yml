@@ -1,0 +1,26 @@
+name: CI
+
+# Hermetic checks only — compile, import, and lint. Playing an actual game needs the
+# live platform, so that is left to `python bot.py` locally rather than a flaky
+# network-dependent CI job.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Byte-compile
+        run: python -m compileall -q bot.py dicechess
+      - name: Import smoke test
+        run: python -c "import dicechess; from dicechess import BotClient; print('import OK')"
+      - name: Lint
+        run: pipx run ruff check .
