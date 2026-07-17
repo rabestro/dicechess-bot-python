@@ -22,5 +22,7 @@ jobs:
         run: python -m compileall -q bot.py dicechess
       - name: Import smoke test
         run: python -c "import dicechess; from dicechess import BotClient; print('import OK')"
+      - name: Tests
+        run: python -m unittest discover -v
       - name: Lint
         run: pipx run ruff check .

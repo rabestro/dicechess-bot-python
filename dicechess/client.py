@@ -102,6 +102,17 @@ class BotClient:
     def resign(self, game_id: str) -> None:
         self._request("POST", f"/bot/game/{game_id}/resign")
 
+    # ── webhook registration ────────────────────────────────────────────────
+
+    def register_webhook(self, url: str) -> dict:
+        """Register an HTTPS callback and return ``{"url", "secret"}``.
+
+        The server runs an ownership handshake first (it POSTs a nonce to ``url``, which your
+        deployed handler must echo — see ``dicechess.webhook``). Registered bots only; the
+        ``secret`` is shown exactly once, so store it as the handler's ``DICECHESS_WEBHOOK_SECRET``.
+        """
+        return self._request("POST", "/bot/webhook", body={"url": url})
+
     # ── transport ──────────────────────────────────────────────────────────────
 
     def _request(self, method: str, path: str, body: Any = None, auth: bool = True) -> dict:

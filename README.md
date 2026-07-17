@@ -52,12 +52,36 @@ def choose_move(legal_moves: dict) -> list[str]:
 - **The full API:** <https://rabestro.github.io/dicechess-play-api/> — REST reference,
   event streams, webhooks, and the provably-fair dice verification procedure.
 
+## Serverless: webhook mode
+
+Instead of polling, you can run as a **webhook**: register one HTTPS callback and the server
+POSTs when it's your turn — your HTTP response body is the move. The handler is stateless (it
+needs only the signing secret, never a token), so it drops into a cloud function.
+
+```bash
+# 1. Deploy webhook.py at a public HTTPS URL, then register it (needs a REGISTERED token):
+DICECHESS_TOKEN=<registered-token> python register.py https://your-url/
+#    → prints DICECHESS_WEBHOOK_SECRET=…
+
+# 2. Run the handler with that secret:
+DICECHESS_WEBHOOK_SECRET=<secret> python webhook.py
+```
+
+For local testing, expose it with a tunnel (`cloudflared tunnel --url http://localhost:8080`)
+and register the tunnel URL. To deploy to AWS Lambda / Cloudflare Workers / Azure Functions,
+call `dicechess.webhook.handle_delivery` from your platform's request handler — it is pure and
+verifies the HMAC signature for you. Same `choose_move` as the poll bot. Webhooks are a
+[registered-identity](https://rabestro.github.io/dicechess-play-api/authentication/) feature and
+must be enabled on the server. Full contract: [Webhooks](https://rabestro.github.io/dicechess-play-api/reference/webhooks/).
+
 ## What's inside
 
 | File | Role |
 | --- | --- |
 | `bot.py` | The runnable poll-only bot and its `choose_move` — **edit this**. |
 | `dicechess/client.py` | Thin transport client: auth, REST calls, retry/backoff, `Retry-After`, 401 re-mint. |
+| `webhook.py` · `register.py` | Serverless webhook handler and one-time registration helper. |
+| `dicechess/webhook.py` | Pure delivery logic: HMAC verification + move selection (reuse it in any function runtime). |
 
 ## Connection modes
 
