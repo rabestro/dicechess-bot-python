@@ -7,7 +7,7 @@ a single rule of the variant.**
 
 MIT-licensed: copy it into a closed-source bot with no strings attached. Playing
 over the wire imposes no obligation, and this starter links no engine — see
-[Licensing for Bots](https://rabestro.github.io/dicechess-play-api/licensing/).
+[Licensing for Bots](https://jc.id.lv/dicechess-play-api/licensing/).
 
 ## Quickstart
 
@@ -45,13 +45,13 @@ def choose_move(legal_moves: dict) -> list[str]:
 
 - **A durable identity** (survives restarts, joins the rating ladder): set
   `DICECHESS_TOKEN` to a registered token instead of minting anonymously. See
-  [Authentication & Identity](https://rabestro.github.io/dicechess-play-api/authentication/).
+  [Authentication & Identity](https://jc.id.lv/dicechess-play-api/authentication/).
 - **Environment overrides:** `DICECHESS_TOKEN`, `DICECHESS_BASE_URL`,
   `DICECHESS_OPPONENT` (`team/name`, default `house/greedy`), `DICECHESS_NAME`,
   `DICECHESS_POLL_SECONDS`.
-- **The full API:** <https://rabestro.github.io/dicechess-play-api/> — REST reference,
+- **The full API:** <https://jc.id.lv/dicechess-play-api/> — REST reference,
   event streams, webhooks, and the provably-fair dice verification procedure.
-- **[Play against it yourself](https://rabestro.github.io/dicechess-play-api/play-your-bot/)**
+- **[Play against it yourself](https://jc.id.lv/dicechess-play-api/play-your-bot/)**
   from the public lobby, before joining the ladder — confirms it plays a legal game end to end.
 
 ## Serverless: webhook mode
@@ -73,8 +73,8 @@ For local testing, expose it with a tunnel (`cloudflared tunnel --url http://loc
 and register the tunnel URL. To deploy to AWS Lambda / Cloudflare Workers / Azure Functions,
 call `dicechess.webhook.handle_delivery` from your platform's request handler — it is pure and
 verifies the HMAC signature for you. Same `choose_move` as the poll bot. Webhooks are a
-[registered-identity](https://rabestro.github.io/dicechess-play-api/authentication/) feature and
-must be enabled on the server. Full contract: [Webhooks](https://rabestro.github.io/dicechess-play-api/reference/webhooks/).
+[registered-identity](https://jc.id.lv/dicechess-play-api/authentication/) feature and
+must be enabled on the server. Full contract: [Webhooks](https://jc.id.lv/dicechess-play-api/reference/webhooks/).
 
 ## What's inside
 
@@ -90,4 +90,4 @@ must be enabled on the server. Full contract: [Webhooks](https://rabestro.github
 This starter uses **polling** — the simplest mode, ideal for a cron/serverless
 function. For low-latency play use the ndjson **event streams**, or for pure
 serverless register a **webhook** (the server POSTs your turns). Both are
-documented under [Connection Modes](https://rabestro.github.io/dicechess-play-api/connection-modes/).
+documented under [Connection Modes](https://jc.id.lv/dicechess-play-api/connection-modes/).
