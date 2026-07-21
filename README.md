@@ -51,6 +51,8 @@ def choose_move(legal_moves: dict) -> list[str]:
   `DICECHESS_POLL_SECONDS`.
 - **The full API:** <https://rabestro.github.io/dicechess-play-api/> — REST reference,
   event streams, webhooks, and the provably-fair dice verification procedure.
+- **[Play against it yourself](https://rabestro.github.io/dicechess-play-api/play-your-bot/)**
+  from the public lobby, before joining the ladder — confirms it plays a legal game end to end.
 
 ## Serverless: webhook mode
 
