@@ -14,10 +14,11 @@ from __future__ import annotations
 import json
 import logging
 import time
+from collections.abc import Callable
+from typing import Any
 import urllib.error
 import urllib.parse
 import urllib.request
-from typing import Any, Callable, Optional
 
 log = logging.getLogger("dicechess")
 
@@ -50,8 +51,8 @@ class BotClient:
     def __init__(
         self,
         base_url: str = DEFAULT_BASE_URL,
-        token: Optional[str] = None,
-        on_unauthorized: Optional[Callable[["BotClient"], None]] = None,
+        token: str | None = None,
+        on_unauthorized: Callable[[BotClient], None] | None = None,
         max_retries: int = 5,
     ):
         self.base_url = base_url.rstrip("/")
@@ -61,7 +62,7 @@ class BotClient:
 
     # ── identity ─────────────────────────────────────────────────────────────
 
-    def mint_anon(self, name: Optional[str] = None) -> dict:
+    def mint_anon(self, name: str | None = None) -> dict:
         """Mint an anonymous token and adopt it. No auth required."""
         query = f"?name={urllib.parse.quote(name)}" if name else ""
         data = self._request("POST", f"/bot/anon{query}", auth=False)
@@ -74,7 +75,7 @@ class BotClient:
 
     # ── challenges & games ────────────────────────────────────────────────────
 
-    def challenge(self, team: str, name: str, time_control: Optional[dict] = None) -> dict:
+    def challenge(self, team: str, name: str, time_control: dict | None = None) -> dict:
         """Challenge another bot. Defaults to an unlimited-time game vs the target."""
         body = {"team": team, "name": name, "timeControl": time_control or {"Unlimited": {}}}
         return self._request("POST", "/bot/challenge", body=body)

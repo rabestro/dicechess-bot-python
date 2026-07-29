@@ -41,7 +41,7 @@ PORT = int(os.environ.get("PORT", "8080"))
 
 
 class Handler(BaseHTTPRequestHandler):
-    def do_POST(self) -> None:  # noqa: N802 — BaseHTTPRequestHandler API
+    def do_POST(self) -> None:  # BaseHTTPRequestHandler API requires this signature
         length = int(self.headers.get("Content-Length", "0"))
         raw = self.rfile.read(length).decode()
         try:
