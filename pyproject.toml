@@ -15,4 +15,16 @@ Source = "https://github.com/rabestro/dicechess-bot-python"
 
 [tool.ruff]
 line-length = 110
-target-version = "py39"
+target-version = "py314"
+
+[tool.ruff.lint]
+ignore = [
+    "EXE001",
+    "UP045",
+    "I001",
+    "UP037",
+    "UP035",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["dicechess"]
