@@ -3,6 +3,6 @@
 See https://rabestro.github.io/dicechess-play-api/ for the full API reference.
 """
 
-from .client import ApiError, BotClient, DEFAULT_BASE_URL
+from .client import DEFAULT_BASE_URL, ApiError, BotClient
 
-__all__ = ["ApiError", "BotClient", "DEFAULT_BASE_URL"]
+__all__ = ["DEFAULT_BASE_URL", "ApiError", "BotClient"]
