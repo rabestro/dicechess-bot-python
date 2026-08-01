@@ -1,6 +1,6 @@
 """Dice Chess bot starter — a thin, dependency-free client and a runnable poll-only bot.
 
-See https://rabestro.github.io/dicechess-play-api/ for the full API reference.
+See https://bots.jc.id.lv/ for the full API reference.
 """
 
 from .client import DEFAULT_BASE_URL, ApiError, BotClient
