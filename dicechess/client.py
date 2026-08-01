@@ -6,7 +6,7 @@ It wraps auth, the REST endpoints, and the resilience patterns a real bot needs
 token on ``401``). Game logic stays out of here: your bot picks moves; this client
 just moves bytes.
 
-Full API reference: https://rabestro.github.io/dicechess-play-api/
+Full API reference: https://bots.jc.id.lv/
 """
 
 from __future__ import annotations

@@ -10,7 +10,7 @@ keywords = ["dicechess", "chess", "bot", "game"]
 dependencies = []
 
 [project.urls]
-Documentation = "https://rabestro.github.io/dicechess-play-api/"
+Documentation = "https://bots.jc.id.lv/"
 Source = "https://github.com/rabestro/dicechess-bot-python"
 
 [tool.ruff]
